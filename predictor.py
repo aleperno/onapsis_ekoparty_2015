@@ -62,6 +62,9 @@ class LfsrPredictor():
 		return self._bin_to_coord(binary)
 	
 	def predict_conf(self):
+		if (len(self.code_list)<2):
+			print "Se necesitan al menos 2 códigos para predecir la configuracion"
+			return False
 		possibles = self._config_generator()
 		for i in xrange(len(self.code_list)-1):
 			"""
