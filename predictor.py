@@ -76,13 +76,15 @@ class LfsrPredictor():
 					#print "Una configuracion posible es %s" % conf
 					hits.append(conf)
 			#print "Fin del test %d, hay %d configuraciones posibles" % (i+1,len(hits))
-			if len(hits) == 1:
-				self.config = hits[0]
-				print "Prediccion exitosa"
-				return
-			else:
-				possibles = hits
-		print "Prediccion no exitosa"
+			possibles = hits
+		if len(possibles) == 1:
+			#Es determinista, solo puede haber una configuracion
+			print "Prediccion exitosa"
+			self.config = possibles[0]
+			return True
+		else:
+			print "Prediccion no exitosa"
+			return False
 
 	def set_seed(self,seed):
 		self.seed = seed
